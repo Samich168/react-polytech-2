@@ -1,0 +1,134 @@
+:root {
+  --gap: 16px;
+  --header-bg: #e3f2fd;
+  --sidebar-bg: #fff3e0;
+  --main-bg: #f3e5f5;
+  --footer-bg: #e8f5e9;
+  --text-color: #111;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: var(--text-color);
+}
+
+/* --- Базовый макет --- */
+.layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  gap: var(--gap);
+  min-height: 80vh;
+  padding: var(--gap);
+}
+
+.header   { grid-area: header; background: var(--header-bg); padding: 1rem; }
+.sidebar  { grid-area: sidebar; background: var(--sidebar-bg); padding: 1rem; }
+.main     { grid-area: main; background: var(--main-bg); padding: 1rem; }
+.footer   { grid-area: footer; background: var(--footer-bg); padding: 1rem; }
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* Псевдоклассы */
+.sidebar li:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.sidebar li:active {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+code {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+/* Адаптив: на мобильных сайдбар уходит вниз, колонка одна */
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "sidebar"
+      "footer";
+  }
+}
+
+/* --- Мини-задание 1: сайдбар и контент местами --- */
+.layout--swapped {
+  grid-template-areas:
+    "header header"
+    "main sidebar"
+    "footer footer";
+}
+
+/* --- Мини-задание 2: пустая колонка по бокам --- */
+.layout--gutter {
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-areas:
+    "header header header"
+    "sidebar main ."
+    "footer footer footer";
+}
+
+@media (max-width: 768px) {
+  .layout--swapped,
+  .layout--gutter {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "sidebar"
+      "footer";
+  }
+}
+
+/* --- Переключатель вариантов (доп. задания) --- */
+.variant-switcher {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.variant-switcher button {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.variant-switcher button:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.variant-switcher button:disabled {
+  background: var(--main-bg);
+  font-weight: 600;
+  cursor: default;
+}
