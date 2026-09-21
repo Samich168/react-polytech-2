@@ -1,8 +1,6 @@
-function Layout({ siteTitle, children, variant = 'default' }) {
-  const variantClass = variant !== 'default' ? ` layout--${variant}` : ''
-
+function Layout({ siteTitle, children }) {
   return (
-    <div className={`layout${variantClass}`} aria-label={`Макет сайта: ${siteTitle}`}>
+    <div className="layout" aria-label={`Макет сайта: ${siteTitle}`}>
       {children}
     </div>
   )
